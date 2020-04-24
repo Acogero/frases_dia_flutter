@@ -46,8 +46,14 @@ matrix:
         - bundle exec fastlane beta
 install:
   # INSTALA SDK FLUTTER - V2.17
-  - git clone -b 'v1.12.13+hotfix.8' --depth 1 https://github.com/flutter/flutter.git
+  - git clone https://github.com/flutter/flutter.git -b stable --depth 1
   - export PATH="$PATH:`pwd`/flutter/bin"
+before_cache:
+ - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+ - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
 cache:
-  directories:
-    - $HOME/.pub-cache
+ directories:
+ - $HOME/.gradle/caches/
+ - $HOME/.gradle/wrapper/
+ - $HOME/.pub-cache
