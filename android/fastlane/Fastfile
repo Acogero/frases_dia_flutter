@@ -19,8 +19,15 @@ platform :android do
   end
 
   desc "DEPLOY NOVA VERSAO - GOOGLE PLAY"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
+  #lane :deploy do
+  #  gradle(task: "clean assembleRelease")
+  #  upload_to_play_store
+  #end
+  lane :playstore do
+    gradle(
+      task: 'assemble',
+      build_type: 'Release'
+    )
     upload_to_play_store
   end
 end
