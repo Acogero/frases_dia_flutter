@@ -6,28 +6,17 @@ default_platform(:android)
 platform :android do
   desc "ENVIANDO VERSAO BETA - GOOGLE PLAY"
   lane :beta do
-    begin
-      upload_to_play_store(
-        track: 'beta',
-        aab: '../build/app/outputs/bundle/release/app-release.aab',
-        #apk: '../build/app/outputs/apk/release/app-release.apk',
-      )
-      rescue => exception
-        raise exception unless exception.message.include?('apkUpgradeVersionConflict')
-        puts 'Versão atual já presente na Play Store. Omitindo este upload.'
-    end
+    gradle(task: 'assemble', build_type: 'Release')
+    upload_to_play_store(track: 'beta')
+    slack(message: 'Successfully distributed a new beta build')
   end
 
   desc "DEPLOY NOVA VERSAO - GOOGLE PLAY"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
+  lane :playstore do
+    gradle(
+      task: 'assemble',
+      build_type: 'Release'
+    )
     upload_to_play_store
   end
-  #lane :playstore do
-  #  gradle(
-  #    task: 'assemble',
-  #    build_type: 'Release'
-  #  )
-  #  upload_to_play_store
-  #end
 end
