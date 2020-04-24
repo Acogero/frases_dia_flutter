@@ -1,5 +1,5 @@
-#Arquivo de configuração para CI/CD - Travis CI
-#A tag matrix é utilizado para que seja configurado multiplo build/deploy - ANDROID/IOS
+#Arquivo de configura??o para CI/CD - Travis CI
+#A tag matrix ? utilizado para que seja configurado multiplo build/deploy - ANDROID/IOS
 
 matrix:
   include:
@@ -32,12 +32,11 @@ matrix:
             - libstdc++6
             - fonts-droid
 
-      # HABILITAR LICENÇA ANDROID GRADLEW
+      # HABILITAR LICEN?A ANDROID GRADLEW
       before_script:
         - yes | sdkmanager --update
         - ls -la
-        - cd android
-        - chmod +x /home/travis/Acogero/frases_dia_flutter/android/gradlew #Dê permissão ao diretorio gradlew que apresenta no log do travis ci
+        - chmod +x /home/travis/Acogero/frases_dia_flutter/android/gradlew #D? permiss?o ao diretorio gradlew que apresenta no log do travis ci
       script:
         # EXECUTA SCRIPT PARA BUILD DO APPBUNDLE RELEASE
         - flutter build appbundle --release
@@ -45,17 +44,10 @@ matrix:
         - cd android
         # EXECUTA LANE PARA DEPLOY NO GOOGLE PLAY
         - bundle exec fastlane beta
-        - ./gradlew assembleDebug
 install:
   # INSTALA SDK FLUTTER - V2.17
-  - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+  - git clone -b 'v1.12.13+hotfix.8' --depth 1 https://github.com/flutter/flutter.git
   - export PATH="$PATH:`pwd`/flutter/bin"
-before_cache:
- - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
- - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-
 cache:
- directories:
- - $HOME/.gradle/caches/
- - $HOME/.gradle/wrapper/
- - $HOME/.pub-cache
+  directories:
+    - $HOME/.pub-cache
