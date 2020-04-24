@@ -44,6 +44,7 @@ matrix:
         - cd android
         # EXECUTA LANE PARA DEPLOY NO GOOGLE PLAY
         - bundle exec fastlane beta
+        - ./gradlew assembleDebug
 install:
   # INSTALA SDK FLUTTER - V2.17
   - git clone https://github.com/flutter/flutter.git -b stable --depth 1
