@@ -39,7 +39,7 @@ matrix:
         - cd android
         - ls -la
         - chmod +x ./gradlew
-        #- chmod +x ./home/travis/Acogero/frases_dia_flutter/android/gradlew #D? permiss?o ao diretorio gradlew que apresenta no log do travis ci
+        - cd ..
       script:
         # EXECUTA SCRIPT PARA BUILD DO APPBUNDLE RELEASE
         - flutter build appbundle --release
