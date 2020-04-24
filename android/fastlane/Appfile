@@ -1,2 +1,2 @@
-json_key_file("fastlante/fastlaneKey.json") # Instruções criação do key secret - https://docs.fastlane.tools/actions/supply/#setup
+json_key_file("fastlane/fastlaneKey.json") # Instruções criação do key secret - https://docs.fastlane.tools/actions/supply/#setup
 package_name("com.tipiniquim.meustestes")
