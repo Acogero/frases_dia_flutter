@@ -37,7 +37,7 @@ matrix:
         - yes | sdkmanager --update
         - ls -la
         - cd android
-        - chmod +x gradlew #Dê permissão ao diretorio gradlew que apresenta no log do travis ci
+        - chmod +x /home/travis/Acogero/frases_dia_flutter/android/gradlew #Dê permissão ao diretorio gradlew que apresenta no log do travis ci
       script:
         # EXECUTA SCRIPT PARA BUILD DO APPBUNDLE RELEASE
         - flutter build appbundle --release
@@ -45,7 +45,7 @@ matrix:
         - cd android
         # EXECUTA LANE PARA DEPLOY NO GOOGLE PLAY
         - bundle exec fastlane beta
-        - cd android && gradlew assembleDebug
+        - ./gradlew assembleDebug
 install:
   # INSTALA SDK FLUTTER - V2.17
   - git clone https://github.com/flutter/flutter.git -b stable --depth 1
