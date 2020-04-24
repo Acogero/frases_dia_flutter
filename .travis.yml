@@ -36,7 +36,9 @@ matrix:
       before_script:
         - yes | sdkmanager --update
         - ls -la
-        - chmod +x /home/travis/Acogero/frases_dia_flutter/android/gradlew #D? permiss?o ao diretorio gradlew que apresenta no log do travis ci
+        - cd android
+        - ls -la
+        - chmod +x ./home/travis/Acogero/frases_dia_flutter/android/gradlew #D? permiss?o ao diretorio gradlew que apresenta no log do travis ci
       script:
         # EXECUTA SCRIPT PARA BUILD DO APPBUNDLE RELEASE
         - flutter build appbundle --release
