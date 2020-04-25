@@ -4,19 +4,24 @@
 default_platform(:android)
 
 platform :android do
+  #desc "TESTANDO"
+  #lane :test do
+  #  gradle(task: "test")
+  #end
+
   desc "ENVIANDO VERSAO BETA - GOOGLE PLAY"
   lane :beta do
-    gradle(task: 'assemble', build_type: 'Release')
-    upload_to_play_store(track: 'beta')
-    slack(message: 'Successfully distributed a new beta build')
+    gradle(task:'assemble', build_type:'Release')
+    upload_to_play_store(track:'beta')
+    slack(message:'Successfully distributed a new beta build')
   end
 
   desc "DEPLOY NOVA VERSAO - GOOGLE PLAY"
   lane :playstore do
     gradle(
-      task: 'assemble',
-      build_type: 'Release'
+      task:'assemble',
+      build_type:'Release'
     )
-    upload_to_play_store
+    upload_to_play_store(track:'production')
   end
 end
